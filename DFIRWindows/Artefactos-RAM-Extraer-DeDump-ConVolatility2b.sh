@@ -78,13 +78,13 @@
   echo ""
   echo "  Intentando determinar el mejor perfil para usar..."
   echo ""
-  if [ -n "$3" ]; then
-    vPerfilAconsejado="$3"
-  else
-    source "$HOME/HackingTools/Forensics/volatility2/venv/bin/activate"
-      vPerfilAconsejado=$("$HOME/HackingTools/Forensics/volatility2/vol.py" -f "$cRutaAlArchivoDeDump" kdbgscan | grep 'Profile suggestion' | cut -d':' -f2 | sed 's- --g' | sort -r | grep -v 2016 | head -n1)
-    deactivate
-  fi
+#  if [ -n "$3" ]; then
+#    vPerfilAconsejado="$3"
+#  else
+#    source "$HOME/HackingTools/Forensics/volatility2/venv/bin/activate"
+#      vPerfilAconsejado=$("$HOME/HackingTools/Forensics/volatility2/vol.py" -f "$cRutaAlArchivoDeDump" kdbgscan | grep 'Profile suggestion' | cut -d':' -f2 | sed 's- --g' | sort -r | grep -v 2016 | head -n1)
+#    deactivate
+#  fi
 vPerfilAconsejado='Win2016x64_14393'
 #Win10x64_10586
 #Win10x64_14393
