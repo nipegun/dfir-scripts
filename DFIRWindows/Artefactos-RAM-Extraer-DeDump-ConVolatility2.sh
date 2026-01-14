@@ -85,14 +85,14 @@
       vPerfilAconsejado=$("$HOME/HackingTools/Forensics/volatility2/vol.py" -f "$cRutaAlArchivoDeDump" kdbgscan | grep 'Profile suggestion' | cut -d':' -f2 | sed 's- --g' | sort -r | grep -v 2016 | head -n1)
     deactivate
   fi
-vPerfilAconsejado='Win10x64_17763'
-Win10x64_10586
-Win10x64_14393
-Win10x64_15063
-Win10x64_16299
-Win10x64_17134
-Win10x64_17763
-Win2016x64_14393
+vPerfilAconsejado='Win2016x64_14393'
+#Win10x64_10586
+#Win10x64_14393
+#Win10x64_15063
+#Win10x64_16299
+#Win10x64_17134
+#Win10x64_17763
+#Win2016x64_14393
 
 # Crear el menú
   # Comprobar si el paquete dialog está instalado. Si no lo está, instalarlo.
@@ -150,28 +150,31 @@ Win2016x64_14393
 
           # Parsear datos
 
-            # windows.filescan (Scans for file objects present in a particular windows memory image)
+            # filescan (Scans for file objects present in a particular windows memory image)
               echo ""
-              echo "    Aplicando el plugin windows.filescan..."
+              echo "    Aplicando el plugin filescan..."
               echo ""
-              $HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" filescan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
-              # Borrar la línea con las palabras Offset y Name
-                sed -i '/Offset.*Name/d' "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
-              # Borrar todas las líneas vacias
-                sed -i '/^$/d' "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
+              $HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" filescan > "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
+              #cat "$cCarpetaDondeGuardar"/tab/windows.filescan.tab | grep HarddiskVolume | awk '{print $1, $5}' | sed 's#\\Device\\HarddiskVolume1##g' | awk '$2 ~ /^\\[A-Za-z]/ {print $1, $2}' > /tmp/archivos.tab
+              cat "$cCarpetaDondeGuardar"/tab/windows.filescan.tab | grep HarddiskVolume | awk '{print $1, $5}' | sed 's#\\Device\\HarddiskVolume1##g' > /tmp/archivos.tab
               # Reemplazar las barras para adaptarlas al sistema de carpetas de Linux
-                sed -i 's|\\|/|g' "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
+                sed -i 's|\\|/|g' /tmp/archivos.tab
 
           # Crear el array asociativo y meter dentro todos los offsets y los archivos
+            unset aOffsetsArchivos
             declare -A aOffsetsArchivos
-            while IFS=$'\t' read -r key value; do
-              aOffsetsArchivos["$key"]="$value"
-            done < "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
+            while read -r vOffset vRuta; do
+              aOffsetsArchivos["$vOffset"]="$vRuta"
+            done < /tmp/archivos.tab
+
+          # Mostrar el contenido del array
+            #for key in "${!aOffsetsArchivos[@]}"; do
+            #  echo "$key -> ${aOffsetsArchivos[$key]}"
+            #done
 
           # Recorrer el array e ir creando archivos
             for key in "${!aOffsetsArchivos[@]}"; do
-              mkdir -p "$cCarpetaDondeGuardar"/Archivos/Simulados/"$(dirname "${aOffsetsArchivos[$key]}")" \
-              && touch "$cCarpetaDondeGuardar"/Archivos/Simulados/"${aOffsetsArchivos[$key]}"
+              mkdir -p "$cCarpetaDondeGuardar/Archivos/Simulados/$(dirname "${aOffsetsArchivos[$key]}")" && touch "$cCarpetaDondeGuardar/Archivos/Simulados/${aOffsetsArchivos[$key]}"
             done
 
           # Corregir algunos errores en carpetas
@@ -191,7 +194,7 @@ Win2016x64_14393
           echo "  Extrayendo archivos individuales de imágenes..."
           echo ""
           # Guardar todas las líneas con las imágenes encontradas
-            cat "$cCarpetaDondeGuardar"/tab/windows.filescan.tab | grep -a -i --color -E '\.(jpg|jpeg|png|bmp|webp)$' > "$cCarpetaDondeGuardar"/tab/windows.filescan-imagenes.tab
+            cat /tmp/archivos.tab | grep -a -i --color -E '\.(jpg|jpeg|png|bmp|webp)$' > "$cCarpetaDondeGuardar"/tab/windows.filescan-imagenes.tab
           # Crear el array asociativo y meter dentro todos los offsets y los archivos
             declare -A aOffsetsArchivosImagenes
             while IFS=$'\t' read -r key value; do
@@ -201,7 +204,7 @@ Win2016x64_14393
             mkdir -p "$cCarpetaDondeGuardar"/Archivos/Individuales/Imagenes/
           # Recorrer el array e ir guardando los offsets
             for key in "${!aOffsetsArchivosImagenes[@]}"; do
-              vol --quiet -f "$cRutaAlArchivoDeDump" -o "$cCarpetaDondeGuardar"/Archivos/Individuales/Imagenes/ windows.dumpfiles --virtaddr $key
+              $HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles --dump-dir "$cCarpetaDondeGuardar"/Archivos/Individuales/Imagenes/ -Q $key 
             done
           # Eliminar archivos con hash duplicado
             declare -A aHashesImagenes
@@ -245,7 +248,7 @@ Win2016x64_14393
           echo "  Extrayendo archivos individuales de documentos..."
           echo ""
           # Guardar todas las líneas con las imágenes encontradas
-            cat "$cCarpetaDondeGuardar"/tab/windows.filescan.tab | grep -a -i --color -E '\.(doc|docx|odt|xls|xlsx|ods|pdf)$' > "$cCarpetaDondeGuardar"/tab/windows.filescan-documentos.tab
+            cat /tmp/archivos.tab | grep -a -i --color -E '\.(doc|docx|odt|xls|xlsx|ods|pdf)$' > "$cCarpetaDondeGuardar"/tab/windows.filescan-documentos.tab
           # Crear el array asociativo y meter dentro todos los offsets y los archivos
             declare -A aOffsetsArchivosDocumentos
             while IFS=$'\t' read -r key value; do
@@ -255,7 +258,7 @@ Win2016x64_14393
             mkdir -p "$cCarpetaDondeGuardar"/Archivos/Individuales/Documentos/
           # Recorrer el array e ir guardando los offsets
             for key in "${!aOffsetsArchivosDocumentos[@]}"; do
-              vol --quiet -f "$cRutaAlArchivoDeDump" -o "$cCarpetaDondeGuardar"/Archivos/Individuales/Documentos/ windows.dumpfiles --virtaddr $key
+              $HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles --dump-dir "$cCarpetaDondeGuardar"/Archivos/Individuales/Documentos/ -Q $key 
             done
           # Eliminar archivos con hash duplicado
             declare -A aHashesDocuementos
@@ -299,7 +302,7 @@ Win2016x64_14393
           echo "  Extrayendo archivos individuales scripts..."
           echo ""
           # Guardar todas las líneas con las imágenes encontradas
-            cat "$cCarpetaDondeGuardar"/tab/windows.filescan.tab | grep -a -i --color -E '\.(sh|bat|ps1|py)$' > "$cCarpetaDondeGuardar"/tab/windows.filescan-scripts.tab
+            cat /tmp/archivos.tab | grep -a -i --color -E '\.(sh|bat|ps1|py)$' > "$cCarpetaDondeGuardar"/tab/windows.filescan-scripts.tab
           # Crear el array asociativo y meter dentro todos los offsets y los archivos
             declare -A aOffsetsArchivosScripts
             while IFS=$'\t' read -r key value; do
@@ -309,7 +312,7 @@ Win2016x64_14393
             mkdir -p "$cCarpetaDondeGuardar"/Archivos/Individuales/Scripts/
           # Recorrer el array e ir guardando los offsets
             for key in "${!aOffsetsArchivosScripts[@]}"; do
-              vol --quiet -f "$cRutaAlArchivoDeDump" -o "$cCarpetaDondeGuardar"/Archivos/Individuales/Scripts/ windows.dumpfiles --virtaddr $key
+              $HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles --dump-dir "$cCarpetaDondeGuardar"/Archivos/Individuales/Scripts/ -Q $key 
             done
           # Eliminar archivos con hash duplicado
             declare -A aHashesScripts
@@ -353,7 +356,7 @@ Win2016x64_14393
           echo "  Extrayendo archivos individuales de logs y eventos..."
           echo ""
           # Guardar todas las líneas con las imágenes encontradas
-            cat "$cCarpetaDondeGuardar"/tab/windows.filescan.tab | grep -a -i --color -E '\.(log|evtx)$' > "$cCarpetaDondeGuardar"/tab/windows.filescan-logsyeventos.tab
+            cat /tmp/archivos.tab | grep -a -i --color -E '\.(log|evtx)$' > "$cCarpetaDondeGuardar"/tab/windows.filescan-logsyeventos.tab
           # Crear el array asociativo y meter dentro todos los offsets y los archivos
             declare -A aOffsetsArchivosLogsYEventos
             while IFS=$'\t' read -r key value; do
@@ -363,7 +366,7 @@ Win2016x64_14393
             mkdir -p "$cCarpetaDondeGuardar"/Archivos/Individuales/LogsYEventos/
           # Recorrer el array e ir guardando los offsets
             for key in "${!aOffsetsArchivosLogsYEventos[@]}"; do
-              vol --quiet -f "$cRutaAlArchivoDeDump" -o "$cCarpetaDondeGuardar"/Archivos/Individuales/LogsYEventos/ windows.dumpfiles --virtaddr $key
+              $HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles --dump-dir "$cCarpetaDondeGuardar"/Archivos/Individuales/LogsYEventos/ -Q $key 
             done
           # Eliminar archivos con hash duplicado
             declare -A aHashesLogsYEventos
@@ -3200,6 +3203,21 @@ Win2016x64_14393
           echo "  Extrayendo el sistema carpetas y archivos de dentro del dump..."
           echo ""
 
+          # Desccargar archivos de imágenes por expresion regular (-n también guarda el nombre de archivo)
+            #$HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles -r '\.(jpg|jpeg|png|gif|bmp|webp)$' -D "$cCarpetaDondeGuardar"/Archivos/Reales/
+          # Desccargar archivos de scripts por expresion regular (-n también guarda el nombre de archivo)
+            #$HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles -r '\.(bat|ps1|py|sh)$' -D "$cCarpetaDondeGuardar"/Archivos/Reales/
+          # Desccargar archivos de documentos por expresion regular (-n también guarda el nombre de archivo)
+            #$HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles -r '\.(doc|docx|odt|xls|xlsx|ods|pdf)$' -D "$cCarpetaDondeGuardar"/Archivos/Reales/
+          # Desccargar archivos de logs y eventos por expresion regular (-n también guarda el nombre de archivo)
+            #$HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles -r '\.(log|evtx)$' -D "$cCarpetaDondeGuardar"/Archivos/Reales/ -n
+          # Desccargar archivos ejecutables por expresion regular (-n también guarda el nombre de archivo)
+            #$HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles -r '\.(com|exe|dll|sys|msi)$' -D "$cCarpetaDondeGuardar"/Archivos/Reales/ -n
+          # Desccargar todos los archivos por expresion regular (-n también guarda el nombre de archivo)
+            #$HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles -r '\..+$' -D "$cCarpetaDondeGuardar"/Archivos/Reales/ -n
+
+
+
           # Crear carpetas
             mkdir -p "$cCarpetaDondeGuardar"/tab
             mkdir -p "$cCarpetaDondeGuardar"/Archivos/Reales
@@ -3207,31 +3225,33 @@ Win2016x64_14393
           # Entrar en el entorno virtual de python
             source $HOME/HackingTools/Forensics/volatility2/venv/bin/activate
 
-          # Parsear datos
-
-            # windows.filescan (Scans for file objects present in a particular windows memory image)
-              echo ""
-              echo "    Aplicando el plugin windows.filescan..."
-              echo ""
-              $HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" windows.filescan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
-              # Borrar la línea con las palabras Offset y Name
-                sed -i '/Offset.*Name/d' "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
-              # Borrar todas las líneas vacias
-                sed -i '/^$/d' "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
-              # Reemplazar las barras para adaptarlas al sistema de carpetas de Linux
-                sed -i 's|\\|/|g' "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
+          # Aplicar el plugin filescan
+            echo ""
+            echo "    Aplicando el plugin filescan..."
+            echo ""
+            $HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" filescan > "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
+            #cat "$cCarpetaDondeGuardar"/tab/windows.filescan.tab | grep HarddiskVolume | awk '{print $1, $5}' | sed 's#\\Device\\HarddiskVolume1##g' | awk '$2 ~ /^\\[A-Za-z]/ {print $1, $2}' > /tmp/archivos.tab
+            cat "$cCarpetaDondeGuardar"/tab/windows.filescan.tab | grep HarddiskVolume | awk '{print $1, $5}' | sed 's#\\Device\\HarddiskVolume1##g' > /tmp/archivos.tab
+            # Reemplazar las barras para adaptarlas al sistema de carpetas de Linux
+              sed -i 's|\\|/|g' /tmp/archivos.tab
 
           # Crear el array asociativo y meter dentro todos los offsets y los archivos
+            unset aOffsetsArchivos
             declare -A aOffsetsArchivos
-            while IFS=$'\t' read -r key value; do
-              aOffsetsArchivos["$key"]="$value"
-            done < "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
+            while read -r vOffset vRuta; do
+              aOffsetsArchivos["$vOffset"]="$vRuta"
+            done < /tmp/archivos.tab
+
+          # Mostrar el contenido del array
+            #for key in "${!aOffsetsArchivos[@]}"; do
+              #echo "$key -> ${aOffsetsArchivos[$key]}"
+            #done
 
           # Recorrer el array e ir creando archivos
             for key in "${!aOffsetsArchivos[@]}"; do
               mkdir -p "$cCarpetaDondeGuardar"/Archivos/Reales/"$(dirname "${aOffsetsArchivos[$key]}")" \
               && cd "$cCarpetaDondeGuardar"/Archivos/Reales/"$(dirname "${aOffsetsArchivos[$key]}")" \
-              && vol --quiet -f "$cRutaAlArchivoDeDump" -o "$cCarpetaDondeGuardar"/Archivos/Reales/"$(dirname "${aOffsetsArchivos[$key]}")" windows.dumpfiles --virtaddr $key
+              && $HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles -Q $key -D "$cCarpetaDondeGuardar"/Archivos/Reales/"$(dirname "${aOffsetsArchivos[$key]}")" 
             done
 
           # Eliminar la extension .dat a todos los archivos
