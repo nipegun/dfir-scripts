@@ -9,7 +9,7 @@
 # Script de NiPeGun para reubicar los archivos extraidos por volatility en subcarpetas dat, img y vacb
 #
 # Ejecución remota:
-#   curl -sL https://raw.githubusercontent.com/nipegun/dfir-scripts/refs/heads/main/DFIRWindows/Artefactos-ArchivosExtraidos-Reubicar.sh | bash -s [CarpetaConArcchivosExtraidos]
+#   curl -sL https://raw.githubusercontent.com/nipegun/dfir-scripts/refs/heads/main/DFIRWindows/Artefactos-ArchivosExtraidos-Reubicar.sh | bash -s [CarpetaConArchivosExtraidos]
 #
 # Bajar y editar directamente el archivo en nano
 #   curl -sL https://raw.githubusercontent.com/nipegun/dfir-scripts/refs/heads/main/DFIRWindows/Artefactos-ArchivosExtraidos-Reubicar.sh | nano -
@@ -17,25 +17,25 @@
 
 # Comprobar que se haya pasado la carpeta
   if [ -z "$1" ]; then
-    echo "Uso: $0 [CarpetaConArcchivosExtraidos]"
+    echo "Uso: $0 [CarpetaConArchivosExtraidos]"
     exit 1
   fi
 
 # Definir la constante con la ruta de la carpeta
-cCarpetaConArcchivosExtraidos="$1"
+cCarpetaConArchivosExtraidos="$1"
 
 # Crear subcarpetas
-  mkdir -p "$cCarpetaConArcchivosExtraidos/dat"
-  mkdir -p "$cCarpetaConArcchivosExtraidos/img"
-  mkdir -p "$cCarpetaConArcchivosExtraidos/vacb"
-  mkdir -p "$cCarpetaConArcchivosExtraidos/_otros"
+  mkdir -p "$cCarpetaConArchivosExtraidos/dat"
+  mkdir -p "$cCarpetaConArchivosExtraidos/img"
+  mkdir -p "$cCarpetaConArchivosExtraidos/vacb"
+  mkdir -p "$cCarpetaConArchivosExtraidos/_otros"
 
 # Mover archivos según extensión
-  find "$cCarpetaConArcchivosExtraidos" -maxdepth 1 -type f -name '*.dat'  -exec mv -v {} "$cCarpetaConArcchivosExtraidos/dat/"  \;
-  find "$cCarpetaConArcchivosExtraidos" -maxdepth 1 -type f -name '*.img'  -exec mv -v {} "$cCarpetaConArcchivosExtraidos/img/"  \;
-  find "$cCarpetaConArcchivosExtraidos" -maxdepth 1 -type f -name '*.vacb' -exec mv -v {} "$cCarpetaConArcchivosExtraidos/vacb/" \;
+  find "$cCarpetaConArchivosExtraidos" -maxdepth 1 -type f -name '*.dat'  -exec mv -v {} "$cCarpetaConArchivosExtraidos/dat/"  \;
+  find "$cCarpetaConArchivosExtraidos" -maxdepth 1 -type f -name '*.img'  -exec mv -v {} "$cCarpetaConArchivosExtraidos/img/"  \;
+  find "$cCarpetaConArchivosExtraidos" -maxdepth 1 -type f -name '*.vacb' -exec mv -v {} "$cCarpetaConArchivosExtraidos/vacb/" \;
 
 # Cualquier otro archivo
-  find "$cCarpetaConArcchivosExtraidos" -maxdepth 1 -type f ! -name '*.dat' ! -name '*.img' ! -name '*.vacb' -exec mv -v {} "$cCarpetaConArcchivosExtraidos/_otros/" \;
+  find "$cCarpetaConArchivosExtraidos" -maxdepth 1 -type f ! -name '*.dat' ! -name '*.img' ! -name '*.vacb' -exec mv -v {} "$cCarpetaConArchivosExtraidos/_otros/" \;
 
 echo "Reubicación completada completada."
