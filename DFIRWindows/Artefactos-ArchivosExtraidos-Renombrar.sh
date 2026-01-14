@@ -24,27 +24,38 @@
 # Definir la constante con la carpeta base
   cCarpetaBase="$1"
 
-# Renombrar en img/
+# Procesar img/
   if [ -d "$cCarpetaBase/img" ]; then
     find "$cCarpetaBase/img" -type f -name '*.img' | while read -r vArchivo; do
-      mv -v "$vArchivo" "${vArchivo%.img}"
+      # Quitar extensión
+        vNuevoNombre="${vArchivo%.img}"
+      # Quitar prefijo de Volatility: file.PID.OFFSET.
+        vSoloNombre="$(basename "$vNuevoNombre" | sed 's/^.*\.[0-9a-fx]\+\.//')"
+      mv -v "$vArchivo" "$(dirname "$vArchivo")/$vSoloNombre"
     done
   fi
 
-# Renombrar en dat/
+# Procesar dat/
   if [ -d "$cCarpetaBase/dat" ]; then
     find "$cCarpetaBase/dat" -type f -name '*.dat' | while read -r vArchivo; do
-      mv -v "$vArchivo" "${vArchivo%.dat}"
+      # Quitar extensión
+        vNuevoNombre="${vArchivo%.dat}"
+      # Quitar prefijo de Volatility
+        vSoloNombre="$(basename "$vNuevoNombre" | sed 's/^.*\.[0-9a-fx]\+\.//')"
+      mv -v "$vArchivo" "$(dirname "$vArchivo")/$vSoloNombre"
     done
   fi
 
-# Renombrar en vacb/
+# Procesar vacb/
   if [ -d "$cCarpetaBase/vacb" ]; then
     find "$cCarpetaBase/vacb" -type f -name '*.vacb' | while read -r vArchivo; do
-      mv -v "$vArchivo" "${vArchivo%.vacb}"
+      # Quitar extensión
+        vNuevoNombre="${vArchivo%.vacb}"
+      # Quitar prefijo de Volatility
+        vSoloNombre="$(basename "$vNuevoNombre" | sed 's/^.*\.[0-9a-fx]\+\.//')"
+      mv -v "$vArchivo" "$(dirname "$vArchivo")/$vSoloNombre"
     done
   fi
 
 echo "Renombrado completado."
-
 
