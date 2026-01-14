@@ -9,7 +9,7 @@
 # Script de NiPeGun para parsear datos extraidos de la RAM de Windows en Debian
 #
 # Ejecución remota con parámetros:
-#   curl -sL hhttps://raw.githubusercontent.com/nipegun/dfir-scripts/refs/heads/main/DFIRWindows/Artefactos-RAM-Extraer-DeDump-ConVolatility3.sh | bash -s [RutaAlArchivoConDump] [CarpetaDondeGuardar]
+#   curl -sL https://raw.githubusercontent.com/nipegun/dfir-scripts/refs/heads/main/DFIRWindows/Artefactos-RAM-Extraer-DeDump-ConVolatility3.sh | bash -s [RutaAlArchivoConDump] [CarpetaDondeGuardar]
 #
 # Bajar y editar directamente el archivo en nano
 #   curl -sL https://raw.githubusercontent.com/nipegun/dfir-scripts/refs/heads/main/DFIRWindows/Artefactos-RAM-Extraer-DeDump-ConVolatility3.sh | nano -
@@ -47,7 +47,7 @@
   mkdir -p "$cCarpetaDondeGuardar"
 
 # Comprobar si existe el repo de volatility3
-  if [ ! -d $HOME/HackingTools/volatility3/ ]; then
+  if [ ! -d $HOME/HackingTools/Forensics/volatility3/ ]; then
     echo ""
     echo "  El repo de volatility3 existe. Descargándolo..."
     echo ""
@@ -66,11 +66,11 @@
   fi
 
 # Comprobar si existe el entorno virtual de python de volatility3
-  if [ ! -d $HOME/HackingTools/volatility3/venv/ ]; then
+  if [ ! -d $HOME/HackingTools/Forensics/volatility3/venv/ ]; then
     echo ""
     echo "  El entorno virtual de python de volatility3 no existe. Creándolo..."
     echo ""
-    cd $HOME/HackingTools/volatility3/
+    cd $HOME/HackingTools/Forensics/volatility3/
     python3 -m venv venv
   fi
 
@@ -126,7 +126,7 @@
             mkdir -p "$cCarpetaDondeGuardar"/Archivos/Simulados
 
           # Entrar en el entorno virtual de python
-            source $HOME/HackingTools/volatility3/venv/bin/activate
+            source $HOME/HackingTools/Forensics/volatility3/venv/bin/activate
 
           # Parsear datos
 
@@ -399,7 +399,7 @@
           echo ""
 
           # Entrar en el entorno virtual de python
-            source $HOME/HackingTools/volatility3/venv/bin/activate
+            source $HOME/HackingTools/Forensics/volatility3/venv/bin/activate
 
           # Parsear datos
 
@@ -436,7 +436,7 @@
           echo ""
 
           # Entrar en el entorno virtual de python
-            source $HOME/HackingTools/volatility3/venv/bin/activate
+            source $HOME/HackingTools/Forensics/volatility3/venv/bin/activate
 
           # Parsear datos
 
@@ -474,7 +474,7 @@
           echo ""
 
           # Entrar en el entorno virtual de python
-            source $HOME/HackingTools/volatility3/venv/bin/activate
+            source $HOME/HackingTools/Forensics/volatility3/venv/bin/activate
 
           # Parsear datos
 
@@ -538,7 +538,7 @@
           echo ""
 
           # Entrar en el entorno virtual de python
-            source $HOME/HackingTools/volatility3/venv/bin/activate
+            source $HOME/HackingTools/Forensics/volatility3/venv/bin/activate
 
           # Parsear datos
 
@@ -598,7 +598,7 @@
           echo ""
 
           # Entrar en el entorno virtual de python
-            source $HOME/HackingTools/volatility3/venv/bin/activate
+            source $HOME/HackingTools/Forensics/volatility3/venv/bin/activate
 
           # Parsear datos
 
@@ -736,7 +736,7 @@
           echo ""
 
           # Entrar en el entorno virtual de python
-            source $HOME/HackingTools/volatility3/venv/bin/activate
+            source $HOME/HackingTools/Forensics/volatility3/venv/bin/activate
 
           # Parsear datos
 
@@ -775,7 +775,7 @@
           echo ""
 
           # Entrar en el entorno virtual de python
-            source $HOME/HackingTools/volatility3/venv/bin/activate
+            source $HOME/HackingTools/Forensics/volatility3/venv/bin/activate
 
           # Parsear datos
 
@@ -803,7 +803,7 @@
           echo ""
 
           # Entrar en el entorno virtual de python
-            source $HOME/HackingTools/volatility3/venv/bin/activate
+            source $HOME/HackingTools/Forensics/volatility3/venv/bin/activate
 
           # Parsear datos
 
@@ -1163,7 +1163,7 @@
                 mkdir -p "$cCarpetaDondeGuardar"/tab/MemoryLayer/
                 cd "$cCarpetaDondeGuardar"/tab/MemoryLayer/
                 vol -f "$cRutaAlArchivoDeDump" layerwriter
-                cd $HOME/HackingTools/volatility3
+                cd $HOME/HackingTools/Forensics/volatility3
 
               # regexscan.RegExScan (Scans kernel memory using RegEx patterns)
                 # Argumentos:
@@ -1186,7 +1186,7 @@
           echo ""
 
           # Entrar en el entorno virtual de python
-            source $HOME/HackingTools/volatility3/venv/bin/activate
+            source $HOME/HackingTools/Forensics/volatility3/venv/bin/activate
 
           # Parsear datos
 
@@ -1809,7 +1809,7 @@
                 mkdir -p "$cCarpetaDondeGuardar"/txt/MemoryLayer/
                 cd "$cCarpetaDondeGuardar"/txt/MemoryLayer/
                 vol -f "$cRutaAlArchivoDeDump" layerwriter
-                cd $HOME/HackingTools/volatility3
+                cd $HOME/HackingTools/Forensics/volatility3
 
               # regexscan.RegExScan (Scans kernel memory using RegEx patterns)
                 # Argumentos:
@@ -1842,7 +1842,7 @@
           echo ""
 
           # Entrar en el entorno virtual de python
-            source $HOME/HackingTools/volatility3/venv/bin/activate
+            source $HOME/HackingTools/Forensics/volatility3/venv/bin/activate
 
           # Parsear datos
 
@@ -2464,7 +2464,7 @@
                 mkdir -p "$cCarpetaDondeGuardar"/csv/MemoryLayer/
                 cd "$cCarpetaDondeGuardar"/csv/MemoryLayer/
                 vol -f "$cRutaAlArchivoDeDump" layerwriter
-                cd $HOME/HackingTools/volatility3
+                cd $HOME/HackingTools/Forensics/volatility3
 
               # regexscan.RegExScan (Scans kernel memory using RegEx patterns)
                 # Argumentos:
@@ -2497,7 +2497,7 @@
           echo ""
 
           # Entrar en el entorno virtual de python
-            source $HOME/HackingTools/volatility3/venv/bin/activate
+            source $HOME/HackingTools/Forensics/volatility3/venv/bin/activate
 
           # Parsear datos
 
@@ -3121,7 +3121,7 @@
                 mkdir -p "$cCarpetaDondeGuardar"/json/MemoryLayer/
                 cd "$cCarpetaDondeGuardar"/json/MemoryLayer/
                 vol -f "$cRutaAlArchivoDeDump" layerwriter
-                cd $HOME/HackingTools/volatility3
+                cd $HOME/HackingTools/Forensics/volatility3
 
               # regexscan.RegExScan (Scans kernel memory using RegEx patterns)
                 # Argumentos:
@@ -3185,7 +3185,7 @@
             mkdir -p "$cCarpetaDondeGuardar"/Archivos/Reales
 
           # Entrar en el entorno virtual de python
-            source $HOME/HackingTools/volatility3/venv/bin/activate
+            source $HOME/HackingTools/Forensics/volatility3/venv/bin/activate
 
           # Parsear datos
 
@@ -3285,7 +3285,7 @@
       #          echo -e "\n      Extrayendo todos los archivos $vExtens...\n"
      #           vol -f "$cRutaAlArchivoDeDump" windows.dumpfiles --filter \.$vExtens\$
      #         done
-    #          cd $HOME/HackingTools/volatility3
+    #          cd $HOME/HackingTools/Forensics/volatility3
    #           dd if=file.None.0xfffffa8000d06e10.dat of=img.png bs=1 skip=0
               #vol -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.dumpfiles ‑‑pid "<PID>" 
               #vol -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.dumpfiles
