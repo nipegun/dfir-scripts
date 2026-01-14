@@ -3203,21 +3203,6 @@ vPerfilAconsejado='Win2016x64_14393'
           echo "  Extrayendo el sistema carpetas y archivos de dentro del dump..."
           echo ""
 
-          # Desccargar archivos de imágenes por expresion regular (-n también guarda el nombre de archivo)
-            #$HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles -r '\.(jpg|jpeg|png|gif|bmp|webp)$' -D "$cCarpetaDondeGuardar"/Archivos/Reales/
-          # Desccargar archivos de scripts por expresion regular (-n también guarda el nombre de archivo)
-            #$HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles -r '\.(bat|ps1|py|sh)$' -D "$cCarpetaDondeGuardar"/Archivos/Reales/
-          # Desccargar archivos de documentos por expresion regular (-n también guarda el nombre de archivo)
-            #$HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles -r '\.(doc|docx|odt|xls|xlsx|ods|pdf)$' -D "$cCarpetaDondeGuardar"/Archivos/Reales/
-          # Desccargar archivos de logs y eventos por expresion regular (-n también guarda el nombre de archivo)
-            #$HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles -r '\.(log|evtx)$' -D "$cCarpetaDondeGuardar"/Archivos/Reales/ -n
-          # Desccargar archivos ejecutables por expresion regular (-n también guarda el nombre de archivo)
-            #$HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles -r '\.(com|exe|dll|sys|msi)$' -D "$cCarpetaDondeGuardar"/Archivos/Reales/ -n
-          # Desccargar todos los archivos por expresion regular (-n también guarda el nombre de archivo)
-            #$HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" dumpfiles -r '\..+$' -D "$cCarpetaDondeGuardar"/Archivos/Reales/ -n
-
-
-
           # Crear carpetas
             mkdir -p "$cCarpetaDondeGuardar"/tab
             mkdir -p "$cCarpetaDondeGuardar"/Archivos/Reales
