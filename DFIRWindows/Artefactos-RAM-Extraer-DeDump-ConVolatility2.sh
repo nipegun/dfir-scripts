@@ -74,6 +74,26 @@
     python3 -m venv venv
   fi
 
+# Determinar el perfil a usar
+  echo ""
+  echo "  Intentando determinar el mejor perfil para usar..."
+  echo ""
+  if [ -n "$3" ]; then
+    vPerfilAconsejado="$3"
+  else
+    source "$HOME/HackingTools/Forensics/volatility2/venv/bin/activate"
+      vPerfilAconsejado=$("$HOME/HackingTools/Forensics/volatility2/vol.py" -f "$cRutaAlArchivoDeDump" kdbgscan | grep 'Profile suggestion' | cut -d':' -f2 | sed 's- --g' | sort -r | grep -v 2016 | head -n1)
+    deactivate
+  fi
+vPerfilAconsejado='Win10x64_17763'
+Win10x64_10586
+Win10x64_14393
+Win10x64_15063
+Win10x64_16299
+Win10x64_17134
+Win10x64_17763
+Win2016x64_14393
+
 # Crear el menú
   # Comprobar si el paquete dialog está instalado. Si no lo está, instalarlo.
     if [[ $(dpkg-query -s dialog 2>/dev/null | grep installed) == "" ]]; then
@@ -134,7 +154,7 @@
               echo ""
               echo "    Aplicando el plugin windows.filescan..."
               echo ""
-              $HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" windows.filescan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
+              $HOME/HackingTools/Forensics/volatility2/vol.py -f "$cRutaAlArchivoDeDump" --profile="$vPerfilAconsejado" filescan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
               # Borrar la línea con las palabras Offset y Name
                 sed -i '/Offset.*Name/d' "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
               # Borrar todas las líneas vacias
