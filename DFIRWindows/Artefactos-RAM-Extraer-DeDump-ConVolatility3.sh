@@ -134,7 +134,7 @@
               echo ""
               echo "    Aplicando el plugin windows.filescan..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.filescan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.filescan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
               # Borrar la línea con las palabras Offset y Name
                 sed -i '/Offset.*Name/d' "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
               # Borrar todas las líneas vacias
@@ -410,19 +410,19 @@
               echo ""
               echo "    Aplicando el plugin windows.envars..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.envars | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.envars.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.envars | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.envars.tab
 
             # windows.hashdump (Dumps user hashes from memory)
               echo ""
               echo "    Aplicando el plugin windows.hashdump..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.hashdump | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.hashdump.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.hashdump | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.hashdump.tab
 
             # windows.info (Show OS & kernel details of the memory sample being analyzed)
               echo ""
               echo "    Aplicando el plugin windows.info..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.info | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.info.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.info | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.info.tab
 
           # Salir del entorno virtual
             deactivate
@@ -447,9 +447,9 @@
               echo "    Aplicando el plugin windows.netscan..."
               echo ""
               # Sin corruptos
-                vol -f "$cRutaAlArchivoDeDump" windows.netscan                   | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.netscan.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.netscan                   | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.netscan.tab
               # Con corruptos
-                vol -f "$cRutaAlArchivoDeDump" windows.netscan --include-corrupt | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.netscan-corrupt.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.netscan --include-corrupt | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.netscan-corrupt.tab
 
             # windows.netstat (Traverses network tracking structures present in a particular windows memory image)
               # Argumentos:
@@ -458,9 +458,9 @@
               echo "    Aplicando el plugin windows.netstat..."
               echo ""
               # Sin corruptos
-                vol -f "$cRutaAlArchivoDeDump" windows.netstat                   | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.netstat.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.netstat                   | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.netstat.tab
               # Con corruptos
-                vol -f "$cRutaAlArchivoDeDump" windows.netstat --include-corrupt | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.netstat-corrupt.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.netstat --include-corrupt | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.netstat-corrupt.tab
 
           # Salir del entorno virtual
             deactivate
@@ -484,13 +484,13 @@
               echo ""
               echo "    Aplicando el plugin windows.registry.certificates..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.registry.certificates | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.registry.certificates.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.registry.certificates | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.registry.certificates.tab
 
             # windows.registry.getcellroutine (Reports registry hives with a hooked GetCellRoutine handler)
               echo ""
               echo "    Aplicando el plugin windows.registry.getcellroutine..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.registry.getcellroutine | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.registry.getcellroutine.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.registry.getcellroutine | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.registry.getcellroutine.tab
 
             # windows.registry.hivelist (Lists the registry hives present in a particular memory image)
               # Argumentos:
@@ -499,13 +499,13 @@
               echo ""
               echo "    Aplicando el plugin windows.registry.hivelist..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.registry.hivelist | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.registry.hivelist.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.registry.hivelist | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.registry.hivelist.tab
 
             # windows.registry.hivescan (Scans for registry hives present in a particular windows memory image)
               echo ""
               echo "    Aplicando el plugin windows.registry.hivescan..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.registry.hivescan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.registry.hivescan.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.registry.hivescan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.registry.hivescan.tab
 
             # windows.registry.printkey (Lists the registry keys under a hive or specific key value)
               # Argumentos:
@@ -515,8 +515,8 @@
               echo ""
               echo "    Aplicando el plugin windows.registry.printkey..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.registry.printkey | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.registry.printkey.tab
-              #vol -f "$cRutaAlArchivoDeDump" windows.registry.printkey ‑‑key "Software\Microsoft\Windows\CurrentVersion" | grep -v "Volatility 3"
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.registry.printkey | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.registry.printkey.tab
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.registry.printkey ‑‑key "Software\Microsoft\Windows\CurrentVersion" | grep -v "Volatility 3"
 
             # windows.registry.userassist (Print userassist registry keys and information)
               # Argumentos:
@@ -524,7 +524,7 @@
               echo ""
               echo "    Aplicando el plugin windows.registry.userassist..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.registry.userassist | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.registry.userassist.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.registry.userassist | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.registry.userassist.tab
 
           # Salir del entorno virtual
             deactivate
@@ -548,7 +548,7 @@
               echo ""
               echo "    Aplicando el plugin windows.cmdline..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.cmdline | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.cmdline.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.cmdline | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.cmdline.tab
 
             # windows.cmdscan (Looks for Windows Command History lists)
               # Argumentos:
@@ -557,7 +557,7 @@
               echo ""
               echo "    Aplicando el plugin windows.cmdscan..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.cmdscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.cmdscan.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.cmdscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.cmdscan.tab
 
             # windows.consoles (Looks for Windows console buffers)
               # Argumentos:
@@ -567,7 +567,7 @@
               echo ""
               echo "    Aplicando el plugin windows.consoles..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.consoles | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.consoles.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.consoles | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.consoles.tab
 
             # windows.joblinks (Print process job link information)
              # Argumentos:
@@ -576,15 +576,15 @@
               echo "    Aplicando el plugin windows.joblinks..."
               echo ""
               # Offset virtual
-                vol -f "$cRutaAlArchivoDeDump" windows.joblinks            | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.joblinks-offsetvirtual.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.joblinks            | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.joblinks-offsetvirtual.tab
               # Offset físico
-                vol -f "$cRutaAlArchivoDeDump" windows.joblinks --physical | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.joblinks-offsetfisico.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.joblinks --physical | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.joblinks-offsetfisico.tab
 
             # windows.scheduled_tasks (Decodes scheduled task information from the Windows registry, including information about triggers, actions, run times, and creation times)
               echo ""
               echo "    Aplicando el plugin windows.scheduled_tasks..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.scheduled_tasks | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.scheduled_tasks.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.scheduled_tasks | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.scheduled_tasks.tab
 
           # Salir del entorno virtual
             deactivate
@@ -608,7 +608,7 @@
               echo ""
               echo "    Aplicando el plugin windows.getsids..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.getsids | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.getsids.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.getsids | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.getsids.tab
 
             # windows.handles (Lists process open handles)
               # Argumentos:
@@ -617,8 +617,8 @@
               echo ""
               echo "    Aplicando el plugin windows.handles..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.handles | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.handles.tab
-              #vol -f "$cRutaAlArchivoDeDump" windows.handles ‑‑pid "<PID>"
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.handles | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.handles.tab
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.handles ‑‑pid "<PID>"
 
             # windows.hollowprocesses (Lists hollowed processes)
               # Argumentos:
@@ -626,13 +626,13 @@
               echo ""
               echo "    Aplicando el plugin windows.hollowprocesses..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.hollowprocesses | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.hollowprocesses.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.hollowprocesses | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.hollowprocesses.tab
 
             # windows.processghosting (Lists processes whose DeletePending bit is set or whose FILE_OBJECT is set to 0)
               echo ""
               echo "    Aplicando el plugin windows.processghosting..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.processghosting | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.processghosting.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.processghosting | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.processghosting.tab
 
             # windows.pslist (Lists the processes present in a particular windows memory image)
               # Argumentos:
@@ -643,7 +643,7 @@
               echo "    Aplicando el plugin windows.pslist..."
               echo ""
               # Offset virtual
-                vol -f "$cRutaAlArchivoDeDump" windows.pslist            | grep -v "Volatility 3" | sort -n > "$cCarpetaDondeGuardar"/tab/windows.pslist-offsetvirtual-pid-ppid.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.pslist            | grep -v "Volatility 3" | sort -n > "$cCarpetaDondeGuardar"/tab/windows.pslist-offsetvirtual-pid-ppid.tab
                 sed -i '/^$/d' "$cCarpetaDondeGuardar"/tab/windows.pslist-offsetvirtual-pid-ppid.tab
                 cut -f2 "$cCarpetaDondeGuardar"/tab/windows.pslist-offsetvirtual-pid-ppid.tab > /tmp/vArchivoTemporalConColumna2.txt
                 cut --complement -f2 "$cCarpetaDondeGuardar"/tab/windows.pslist-offsetvirtual-pid-ppid.tab > /tmp/vArchivoTemporalConRestoDeColumnas.txt
@@ -651,7 +651,7 @@
                 cat /tmp/vArchivoTemporal.txt | sort -n > "$cCarpetaDondeGuardar"/tab/windows.pslist-offsetvirtual-ppid-pid.tab
                 sed -i '/^$/d' "$cCarpetaDondeGuardar"/tab/windows.pslist-offsetvirtual-ppid-pid.tab
               # Offset físico
-                vol -f "$cRutaAlArchivoDeDump" windows.pslist --physical | grep -v "Volatility 3" | sort -n > "$cCarpetaDondeGuardar"/tab/windows.pslist-offsetfisico-pid-ppid.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.pslist --physical | grep -v "Volatility 3" | sort -n > "$cCarpetaDondeGuardar"/tab/windows.pslist-offsetfisico-pid-ppid.tab
                 sed -i '/^$/d' "$cCarpetaDondeGuardar"/tab/windows.pslist-offsetfisico-pid-ppid.tab
                 cut -f2 "$cCarpetaDondeGuardar"/tab/windows.pslist-offsetfisico-pid-ppid.tab > /tmp/vArchivoTemporalConColumna2.txt
                 cut --complement -f2 "$cCarpetaDondeGuardar"/tab/windows.pslist-offsetfisico-pid-ppid.tab > /tmp/vArchivoTemporalConRestoDeColumnas.txt
@@ -668,7 +668,7 @@
               echo "    Aplicando el plugin windows.psscan..."
               echo ""
               # Offset virtual
-                vol -f "$cRutaAlArchivoDeDump" windows.psscan            | grep -v "Volatility 3" | sort -n > "$cCarpetaDondeGuardar"/tab/windows.psscan-offsetvirtual-pid-ppid.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.psscan            | grep -v "Volatility 3" | sort -n > "$cCarpetaDondeGuardar"/tab/windows.psscan-offsetvirtual-pid-ppid.tab
                 sed -i '/^$/d' "$cCarpetaDondeGuardar"/tab/windows.psscan-offsetvirtual-pid-ppid.tab
                 cut -f2 "$cCarpetaDondeGuardar"/tab/windows.psscan-offsetvirtual-pid-ppid.tab > /tmp/vArchivoTemporalConColumna2.txt
                 cut --complement -f2 "$cCarpetaDondeGuardar"/tab/windows.psscan-offsetvirtual-pid-ppid.tab > /tmp/vArchivoTemporalConRestoDeColumnas.txt
@@ -676,7 +676,7 @@
                 cat /tmp/vArchivoTemporal.txt | sort -n > "$cCarpetaDondeGuardar"/tab/windows.psscan-offsetvirtual-ppid-pid.tab
                 sed -i '/^$/d' "$cCarpetaDondeGuardar"/tab/windows.psscan-offsetvirtual-ppid-pid.tab
               # Offset físico
-                vol -f "$cRutaAlArchivoDeDump" windows.psscan --physical | grep -v "Volatility 3" | sort -n > "$cCarpetaDondeGuardar"/tab/windows.psscan-offsetfisico-pid-ppid.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.psscan --physical | grep -v "Volatility 3" | sort -n > "$cCarpetaDondeGuardar"/tab/windows.psscan-offsetfisico-pid-ppid.tab
                 sed -i '/^$/d' "$cCarpetaDondeGuardar"/tab/windows.psscan-offsetfisico-pid-ppid.tab
                 cut -f2 "$cCarpetaDondeGuardar"/tab/windows.psscan-offsetfisico-pid-ppid.tab > /tmp/vArchivoTemporalConColumna2.txt
                 cut --complement -f2 "$cCarpetaDondeGuardar"/tab/windows.psscan-offsetfisico-pid-ppid.tab > /tmp/vArchivoTemporalConRestoDeColumnas.txt
@@ -692,9 +692,9 @@
               echo "    Aplicando el plugin windows.pstree..."
               echo ""
               # Offset virtual
-                vol -f "$cRutaAlArchivoDeDump" windows.pstree            | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.pstree-offsetvirtual.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.pstree            | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.pstree-offsetvirtual.tab
               # Offset físico
-                vol -f "$cRutaAlArchivoDeDump" windows.pstree --physical | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.pstree-offsetfisico.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.pstree --physical | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.pstree-offsetfisico.tab
 
             # windows.psxview (Lists all processes found via four of the methods described in "The Art of Memory Forensics," which may help identify processes that are trying to hide themselves. I recommend using -r pretty if you are looking at this plugin's output in a terminal)
               # Argumentos:
@@ -703,9 +703,9 @@
               echo "    Aplicando el plugin windows.psxview..."
               echo ""
               # Offsets virtuales
-                vol -f "$cRutaAlArchivoDeDump" windows.psxview                    | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.psxview-offsetsvirtuales.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.psxview                    | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.psxview-offsetsvirtuales.tab
               # Offsets físicos
-                vol -f "$cRutaAlArchivoDeDump" windows.psxview --physical-offsets | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.psxview-offsetsfisicos.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.psxview --physical-offsets | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.psxview-offsetsfisicos.tab
 
             # windows.strings (Reads output from the strings command and indicates which process(es) each string belongs to)
               # Argumentos:
@@ -714,7 +714,7 @@
               echo ""
               echo "    Aplicando el plugin windows.strings..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.strings | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.strings.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.strings | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.strings.tab
 
             # windows.threads (Lists process threads)
               # Argumentos:
@@ -722,7 +722,7 @@
               echo ""
               echo "    Aplicando el plugin windows.threads..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.threads | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.threads.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.threads | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.threads.tab
 
           # Salir del entorno virtual
             deactivate
@@ -747,9 +747,9 @@
               echo "    Aplicando el plugin windows.mbrscan..."
               echo ""
               # Simple
-                vol -f "$cRutaAlArchivoDeDump" windows.mbrscan        | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.mbrscan.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.mbrscan        | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.mbrscan.tab
               # Completo
-                vol -f "$cRutaAlArchivoDeDump" windows.mbrscan --full | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.mbrscan-full.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.mbrscan --full | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.mbrscan-full.tab
 
             # No windows
 
@@ -761,7 +761,7 @@
                 echo ""
                 echo "    Aplicando el plugin timeliner..."
                 echo ""
-                vol -f "$cRutaAlArchivoDeDump" timeliner | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/timeliner.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" timeliner | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/timeliner.tab
 
           # Salir del entorno virtual
             deactivate
@@ -783,13 +783,13 @@
               echo ""
               echo "    Aplicando el plugin windows.devicetree..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.devicetree | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.devicetree.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.devicetree | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.devicetree.tab
 
             # windows.ssdt (Lists the system call table)
               echo ""
               echo "    Aplicando el plugin windows.ssdt..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.ssdt | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.ssdt.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.ssdt | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.ssdt.tab
 
           # Salir del entorno virtual
             deactivate
@@ -811,7 +811,7 @@
               echo ""
               echo "    Aplicando el plugin windows.amcache..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.amcache | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.amcache.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.amcache | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.amcache.tab
 
             # windows.bigpools (List big page pools)
               # Argumentos:
@@ -821,27 +821,27 @@
               echo "    Aplicando el plugin windows.bigpools..."
               echo ""
               # En uso
-                vol -f "$cRutaAlArchivoDeDump" windows.bigpools             | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.bigpools-enuso.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.bigpools             | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.bigpools-enuso.tab
               # En uso y libres
-                vol -f "$cRutaAlArchivoDeDump" windows.bigpools --show-free | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.bigpools-enusoylibres.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.bigpools --show-free | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.bigpools-enusoylibres.tab
 
             # windows.callbacks (Lists kernel callbacks and notification routines)
               echo ""
               echo "    Aplicando el plugin windows.callbacks..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.callbacks | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.callbacks.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.callbacks | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.callbacks.tab
 
             # windows.crashinfo (Lists the information from a Windows crash dump)
               echo ""
               echo "    Aplicando el plugin windows.crashinfo..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.crashinfo | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.crashinfo.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.crashinfo | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.crashinfo.tab
 
             # windows.debugregisters ()
               echo ""
               echo "    Aplicando el plugin windows.debugregisters..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.debugregisters | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.debugregisters.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.debugregisters | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.debugregisters.tab
 
             # windows.dlllist (Lists the loaded modules in a particular windows memory image)
               # Argumentos:
@@ -854,32 +854,32 @@
               echo ""
               echo "    Aplicando el plugin windows.dlllist..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.dlllist | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.dlllist.tab
-              #vol -f "$cRutaAlArchivoDeDump" windows.dlllist ‑‑pid "<PID>"
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.dlllist | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.dlllist.tab
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.dlllist ‑‑pid "<PID>"
 
             # windows.driverirp (List IRPs for drivers in a particular windows memory image)
               echo ""
               echo "    Aplicando el plugin windows.driverirp..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.driverirp | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.driverirp.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.driverirp | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.driverirp.tab
 
             # windows.drivermodule (Determines if any loaded drivers were hidden by a rootkit)
               echo ""
               echo "    Aplicando el plugin windows.drivermodule..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.drivermodule | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.drivermodule.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.drivermodule | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.drivermodule.tab
 
             # windows.driverscan (Scans for drivers present in a particular windows memory image)
               echo ""
               echo "    Aplicando el plugin windows.driverscan..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.driverscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.driverscan.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.driverscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.driverscan.tab
 
             # windows.getservicesids (Lists process token sids)
               echo ""
               echo "    Aplicando el plugin windows.getservicesids..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.getservicesids | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.getservicesids.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.getservicesids | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.getservicesids.tab
 
             # windows.iat (Extract Import Address Table to list API (functions) used by a program contained in external libraries)
               # Argumentos:
@@ -887,13 +887,13 @@
               echo ""
               echo "    Aplicando el plugin windows.iat..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.iat | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.iat.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.iat | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.iat.tab
 
             # windows.kpcrs (Print KPCR structure for each processor)
               echo ""
               echo "    Aplicando el plugin windows.kpcrs..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.kpcrs | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.kpcrs.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.kpcrs | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.kpcrs.tab
 
             # windows.ldrmodules (Lists the loaded modules in a particular windows memory image)
               # Argumentos:
@@ -901,13 +901,13 @@
               echo ""
               echo "    Aplicando el plugin windows.ldrmodules..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.ldrmodules | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.ldrmodules.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.ldrmodules | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.ldrmodules.tab
 
             # windows.malfind (Lists process memory ranges that potentially contain injected code)
               echo ""
               echo "    Aplicando el plugin windows.malfind..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.malfind | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.malfind.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.malfind | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.malfind.tab
 
             # windows.memmap (Prints the memory map)
               # Argumentos:
@@ -916,8 +916,8 @@
               echo ""
               echo "    Aplicando el plugin windows.memmap..."
               echo ""
-              #vol -f "$cRutaAlArchivoDeDump" windows.memmap | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.memmap.tab
-              #vol -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.memmap ‑‑dump ‑‑pid "<PID>"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.memmap | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.memmap.tab
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.memmap ‑‑dump ‑‑pid "<PID>"
 
             # windows.modscan (Scans for modules present in a particular windows memory image)
               # Argumentos:
@@ -927,7 +927,7 @@
               echo ""
               echo "    Aplicando el plugin windows.modscan..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.modscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.modscan.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.modscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.modscan.tab
 
             # windows.modules (Lists the loaded kernel modules)
               # Argumentos:
@@ -937,19 +937,19 @@
               echo ""
               echo "    Aplicando el plugin windows.modules..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.modules | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.modules.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.modules | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.modules.tab
 
             # windows.mutantscan (Scans for mutexes present in a particular windows memory image)
               echo ""
               echo "    Aplicando el plugin windows.mutantscan..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.mutantscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.mutantscan.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.mutantscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.mutantscan.tab
 
             # windows.orphan_kernel_threads (Lists process threads)
               echo ""
               echo "    Aplicando el plugin windows.orphan_kernel_threads..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.orphan_kernel_threads | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.orphan_kernel_threads.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.orphan_kernel_threads | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.orphan_kernel_threads.tab
 
             # windows.pe_symbols (Prints symbols in PE files in process and kernel memory)
               # Argumentos:
@@ -960,7 +960,7 @@
               echo ""
               echo "    Aplicando el plugin windows.pe_symbols..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.pe_symbols | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.pe_symbols.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.pe_symbols | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.pe_symbols.tab
 
             # windows.pedump (Allows extracting PE Files from a specific address in a specific address space)
               # Argumentos:
@@ -970,13 +970,13 @@
               echo ""
               echo "    Aplicando el plugin windows.pedump..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.pedump | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.pedump.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.pedump | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.pedump.tab
 
             # windows.poolscanner (A generic pool scanner plugin)
               echo ""
               echo "    Aplicando el plugin windows.poolscanner..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.poolscanner | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.poolscanner.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.poolscanner | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.poolscanner.tab
 
             # windows.privileges (Lists process token privileges)
               # Argumentos:
@@ -984,7 +984,7 @@
               echo ""
               echo "    Aplicando el plugin windows.privileges..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.privileges | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.privileges.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.privileges | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.privileges.tab
 
             # windows.sessions (lists Processes with Session information extracted from Environmental Variables)
               # Argumentos:
@@ -992,25 +992,25 @@
               echo ""
               echo "    Aplicando el plugin windows.sessions..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.sessions | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.sessions.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.sessions | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.sessions.tab
 
             # windows.shimcachemem (Reads Shimcache entries from the ahcache.sys AVL tree)
               echo ""
               echo "    Aplicando el plugin windows.shimcachemem..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.shimcachemem | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.shimcachemem.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.shimcachemem | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.shimcachemem.tab
 
             # windows.skeleton_key_check (Looks for signs of Skeleton Key malware)
               echo ""
               echo "    Aplicando el plugin windows.skeleton_key_check..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.skeleton_key_check | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.skeleton_key_check.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.skeleton_key_check | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.skeleton_key_check.tab
 
             # windows.statistics (Lists statistics about the memory space)
               echo ""
               echo "    Aplicando el plugin windows.statistics..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.statistics | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.statistics.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.statistics | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.statistics.tab
 
             # windows.suspicious_threads (Lists suspicious userland process threads)
               # Argumentos:
@@ -1018,43 +1018,43 @@
               echo ""
               echo "    Aplicando el plugin windows.suspicious_threads..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.suspicious_threads | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.suspicious_threads.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.suspicious_threads | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.suspicious_threads.tab
 
             # windows.svcdiff (Compares services found through list walking versus scanning to find rootkits)
               echo ""
               echo "    Aplicando el plugin windows.svcdiff..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.svcdiff | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.svcdiff.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.svcdiff | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.svcdiff.tab
 
             # windows.svclist (Lists services contained with the services.exe doubly linked list of services)
               echo ""
               echo "    Aplicando el plugin windows.svclist..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.svclist | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.svclist.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.svclist | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.svclist.tab
 
             # windows.svcscan (Scans for windows services)
               echo ""
               echo "    Aplicando el plugin windows.svcscan..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.svcscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.svcscan.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.svcscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.svcscan.tab
 
             # windows.symlinkscan (Scans for links present in a particular windows memory image)
               echo ""
               echo "    Aplicando el plugin windows.symlinkscan..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.symlinkscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.symlinkscan.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.symlinkscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.symlinkscan.tab
 
             # windows.thrdscan (Scans for windows threads)
               echo ""
               echo "    Aplicando el plugin windows.thrdscan..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.thrdscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.thrdscan.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.thrdscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.thrdscan.tab
 
             # windows.timers (Print kernel timers and associated module DPCs)
               echo ""
               echo "    Aplicando el plugin windows.timers..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.timers | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.timers.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.timers | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.timers.tab
 
             # windows.truecrypt (TrueCrypt Cached Passphrase Finder)
               # Argumentos:
@@ -1062,19 +1062,19 @@
               echo ""
               echo "    Aplicando el plugin windows.truecrypt..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.truecrypt | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.truecrypt.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.truecrypt | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.truecrypt.tab
 
             # windows.unhooked_system_calls (Looks for signs of Skeleton Key malware)
               echo ""
               echo "    Aplicando el plugin windows.unhooked_system_calls..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.unhooked_system_calls | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.unhooked_system_calls.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.unhooked_system_calls | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.unhooked_system_calls.tab
 
             # windows.unloadedmodules (Lists the unloaded kernel modules)
               echo ""
               echo "    Aplicando el plugin windows.unloadedmodules..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.unloadedmodules | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.unloadedmodules.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.unloadedmodules | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.unloadedmodules.tab
 
             # windows.vadinfo (Lists process memory ranges)
               # Argumentos:
@@ -1085,7 +1085,7 @@
               echo ""
               echo "    Aplicando el plugin windows.vadinfo..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.vadinfo | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.vadinfo.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.vadinfo | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.vadinfo.tab
 
             # windows.vadregexscan (Scans all virtual memory areas for tasks using RegEx)
               # Argumentos:
@@ -1095,7 +1095,7 @@
               echo ""
               echo "    Aplicando el plugin windows.vadregexscan..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.vadregexscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.vadregexscan.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.vadregexscan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.vadregexscan.tab
 
             # windows.vadwalk (Walk the VAD tree)
               # Argumentos:
@@ -1103,7 +1103,7 @@
               echo ""
               echo "    Aplicando el plugin windows.vadwalk..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.vadwalk | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.vadwalk.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.vadwalk | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.vadwalk.tab
 
             # windows.verinfo (Lists version information from PE files)
               # Argumenots:
@@ -1112,15 +1112,15 @@
               echo "    Aplicando el plugin windows.verinfo..."
               echo ""
               # Normal
-                vol -f "$cRutaAlArchivoDeDump" windows.verinfo             | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.verinfo-normal.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.verinfo             | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.verinfo-normal.tab
               # Extensivo
-                vol -f "$cRutaAlArchivoDeDump" windows.verinfo --extensive | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.verinfo-extensivo.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.verinfo --extensive | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.verinfo-extensivo.tab
 
             # windows.virtmap (Lists virtual mapped sections)
               echo ""
               echo "    Aplicando el plugin windows.virtmap..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.virtmap | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.virtmap.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.virtmap | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.virtmap.tab
 
             # windows.vadyarascan (Scans all the Virtual Address Descriptor memory maps using yara)
               # Argumentos:
@@ -1133,11 +1133,11 @@
               #   --pid [PID ...]                         - Process IDs to include (all other processes are excluded)
               #
               # Notas: Este módulo nos permite buscar cadenas dentro de un proceso, de esta forma:
-              # vol -f file.dmp windows.vadyarascan.VadYaraScan --yara-rules "https://" --pid 3692 3840 3976 3312 3084 2784
+              # $HOME/HackingTools/Forensics/volatility3/vol.py -f file.dmp windows.vadyarascan.VadYaraScan --yara-rules "https://" --pid 3692 3840 3976 3312 3084 2784
               echo ""
               echo "    Aplicando el plugin windows.vadyarascan..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.vadyarascan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.vadyarascan.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.vadyarascan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.vadyarascan.tab
 
             # No windows
 
@@ -1150,7 +1150,7 @@
                 echo ""
                 echo "    Aplicando el plugin isinfo..."
                 echo ""
-                vol -f "$cRutaAlArchivoDeDump" isfinfo | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/isfinfo.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" isfinfo | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/isfinfo.tab
 
               # layerwriter (Runs the automagics and writes out the primary layer produced by the stacker)
                 # Argumentos:
@@ -1162,7 +1162,7 @@
                 echo ""
                 mkdir -p "$cCarpetaDondeGuardar"/tab/MemoryLayer/
                 cd "$cCarpetaDondeGuardar"/tab/MemoryLayer/
-                vol -f "$cRutaAlArchivoDeDump" layerwriter
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" layerwriter
                 cd $HOME/HackingTools/Forensics/volatility3
 
               # regexscan.RegExScan (Scans kernel memory using RegEx patterns)
@@ -1172,7 +1172,7 @@
                 echo ""
                 echo "    Aplicando el plugin regexscan.RegExScan..."
                 echo ""
-                vol -f "$cRutaAlArchivoDeDump" regexscan.RegExScan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/regexscan.RegExScan.tab
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" regexscan.RegExScan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/regexscan.RegExScan.tab
 
           # Salir del entorno virtual
             deactivate
@@ -1274,7 +1274,7 @@
               echo "    Aplicando el plugin windows.dlllist..."
               echo ""
               vol -r pretty -f "$cRutaAlArchivoDeDump" windows.dlllist | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/txt/windows.dlllist.txt
-              #vol -f "$cRutaAlArchivoDeDump" windows.dlllist ‑‑pid "<PID>"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.dlllist ‑‑pid "<PID>"
 
             # windows.driverirp (List IRPs for drivers in a particular windows memory image)
               echo ""
@@ -1331,7 +1331,7 @@
               echo "    Aplicando el plugin windows.handles..."
               echo ""
               vol -r pretty -f "$cRutaAlArchivoDeDump" windows.handles | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/txt/windows.handles.txt
-              #vol -f "$cRutaAlArchivoDeDump" windows.handles ‑‑pid "<PID>"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.handles ‑‑pid "<PID>"
 
             # windows.hashdump (Dumps user hashes from memory)
               echo ""
@@ -1412,7 +1412,7 @@
               echo "    Aplicando el plugin windows.memmap..."
               echo ""
               #vol -r pretty -f "$cRutaAlArchivoDeDump" windows.memmap | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/txt/windows.memmap.txt
-              #vol -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.memmap ‑‑dump ‑‑pid "<PID>"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.memmap ‑‑dump ‑‑pid "<PID>"
 
             # windows.modscan (Scans for modules present in a particular windows memory image)
               # Argumentos:
@@ -1596,7 +1596,7 @@
               echo "    Aplicando el plugin windows.registry.printkey..."
               echo ""
               vol -r pretty -f "$cRutaAlArchivoDeDump" windows.registry.printkey | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/txt/windows.registry.printkey.txt
-              #vol -f "$cRutaAlArchivoDeDump" windows.registry.printkey ‑‑key "Software\Microsoft\Windows\CurrentVersion" | grep -v "Volatility 3"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.registry.printkey ‑‑key "Software\Microsoft\Windows\CurrentVersion" | grep -v "Volatility 3"
 
             # windows.registry.userassist (Print userassist registry keys and information)
               # Argumentos:
@@ -1808,7 +1808,7 @@
                 echo ""
                 mkdir -p "$cCarpetaDondeGuardar"/txt/MemoryLayer/
                 cd "$cCarpetaDondeGuardar"/txt/MemoryLayer/
-                vol -f "$cRutaAlArchivoDeDump" layerwriter
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" layerwriter
                 cd $HOME/HackingTools/Forensics/volatility3
 
               # regexscan.RegExScan (Scans kernel memory using RegEx patterns)
@@ -1930,7 +1930,7 @@
               echo "    Aplicando el plugin windows.dlllist..."
               echo ""
               vol -r csv -f "$cRutaAlArchivoDeDump" windows.dlllist | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/csv/windows.dlllist.csv
-              #vol -f "$cRutaAlArchivoDeDump" windows.dlllist ‑‑pid "<PID>"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.dlllist ‑‑pid "<PID>"
 
             # windows.driverirp (List IRPs for drivers in a particular windows memory image)
               echo ""
@@ -1987,7 +1987,7 @@
               echo "    Aplicando el plugin windows.handles..."
               echo ""
               vol -r csv -f "$cRutaAlArchivoDeDump" windows.handles | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/csv/windows.handles.csv
-              #vol -f "$cRutaAlArchivoDeDump" windows.handles ‑‑pid "<PID>"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.handles ‑‑pid "<PID>"
 
             # windows.hashdump (Dumps user hashes from memory)
               echo ""
@@ -2067,7 +2067,7 @@
               echo "    Aplicando el plugin windows.memmap..."
               echo ""
               #vol -r csv -f "$cRutaAlArchivoDeDump" windows.memmap | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/csv/windows.memmap.csv
-              #vol -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.memmap ‑‑dump ‑‑pid "<PID>"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.memmap ‑‑dump ‑‑pid "<PID>"
 
             # windows.modscan (Scans for modules present in a particular windows memory image)
               # Argumentos:
@@ -2251,7 +2251,7 @@
               echo "    Aplicando el plugin windows.registry.printkey..."
               echo ""
               vol -r csv -f "$cRutaAlArchivoDeDump" windows.registry.printkey | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/csv/windows.registry.printkey.csv
-              #vol -f "$cRutaAlArchivoDeDump" windows.registry.printkey ‑‑key "Software\Microsoft\Windows\CurrentVersion" | grep -v "Volatility 3"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.registry.printkey ‑‑key "Software\Microsoft\Windows\CurrentVersion" | grep -v "Volatility 3"
 
             # windows.registry.userassist (Print userassist registry keys and information)
               # Argumentos:
@@ -2463,7 +2463,7 @@
                 echo ""
                 mkdir -p "$cCarpetaDondeGuardar"/csv/MemoryLayer/
                 cd "$cCarpetaDondeGuardar"/csv/MemoryLayer/
-                vol -f "$cRutaAlArchivoDeDump" layerwriter
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" layerwriter
                 cd $HOME/HackingTools/Forensics/volatility3
 
               # regexscan.RegExScan (Scans kernel memory using RegEx patterns)
@@ -2585,7 +2585,7 @@
               echo "    Aplicando el plugin windows.dlllist..."
               echo ""
               vol -r json -f "$cRutaAlArchivoDeDump" windows.dlllist | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/json/windows.dlllist.json
-              #vol -f "$cRutaAlArchivoDeDump" windows.dlllist ‑‑pid "<PID>"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.dlllist ‑‑pid "<PID>"
 
             # windows.driverirp (List IRPs for drivers in a particular windows memory image)
               echo ""
@@ -2642,7 +2642,7 @@
               echo "    Aplicando el plugin windows.handles..."
               echo ""
               vol -r json -f "$cRutaAlArchivoDeDump" windows.handles | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/json/windows.handles.json
-              #vol -f "$cRutaAlArchivoDeDump" windows.handles ‑‑pid "<PID>"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.handles ‑‑pid "<PID>"
 
             # windows.hashdump (Dumps user hashes from memory)
               echo ""
@@ -2722,7 +2722,7 @@
               echo "    Aplicando el plugin windows.memmap..."
               echo ""
               #vol -r json -f "$cRutaAlArchivoDeDump" windows.memmap | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/json/windows.memmap.json
-              #vol -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.memmap ‑‑dump ‑‑pid "<PID>"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.memmap ‑‑dump ‑‑pid "<PID>"
 
             # windows.modscan (Scans for modules present in a particular windows memory image)
               # Argumentos:
@@ -2908,7 +2908,7 @@
               echo "    Aplicando el plugin windows.registry.printkey..."
               echo ""
               vol -r json -f "$cRutaAlArchivoDeDump" windows.registry.printkey | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/json/windows.registry.printkey.json
-              #vol -f "$cRutaAlArchivoDeDump" windows.registry.printkey ‑‑key "Software\Microsoft\Windows\CurrentVersion" | grep -v "Volatility 3"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.registry.printkey ‑‑key "Software\Microsoft\Windows\CurrentVersion" | grep -v "Volatility 3"
 
             # windows.registry.userassist (Print userassist registry keys and information)
               # Argumentos:
@@ -3120,7 +3120,7 @@
                 echo ""
                 mkdir -p "$cCarpetaDondeGuardar"/json/MemoryLayer/
                 cd "$cCarpetaDondeGuardar"/json/MemoryLayer/
-                vol -f "$cRutaAlArchivoDeDump" layerwriter
+                $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" layerwriter
                 cd $HOME/HackingTools/Forensics/volatility3
 
               # regexscan.RegExScan (Scans kernel memory using RegEx patterns)
@@ -3193,7 +3193,7 @@
               echo ""
               echo "    Aplicando el plugin windows.filescan..."
               echo ""
-              vol -f "$cRutaAlArchivoDeDump" windows.filescan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
+              $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.filescan | grep -v "Volatility 3" > "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
               # Borrar la línea con las palabras Offset y Name
                 sed -i '/Offset.*Name/d' "$cCarpetaDondeGuardar"/tab/windows.filescan.tab
               # Borrar todas las líneas vacias
@@ -3283,15 +3283,15 @@
         #      cd "$cCarpetaDondeGuardar"/Archivos/
        #       for vExtens in "${aExtensionesAExtraer[@]}"; do
       #          echo -e "\n      Extrayendo todos los archivos $vExtens...\n"
-     #           vol -f "$cRutaAlArchivoDeDump" windows.dumpfiles --filter \.$vExtens\$
+     #           $HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" windows.dumpfiles --filter \.$vExtens\$
      #         done
     #          cd $HOME/HackingTools/Forensics/volatility3
    #           dd if=file.None.0xfffffa8000d06e10.dat of=img.png bs=1 skip=0
-              #vol -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.dumpfiles ‑‑pid "<PID>" 
-              #vol -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.dumpfiles
-              #vol -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.dumpfiles ‑‑virtaddr "<offset>"
-              #vol -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.dumpfiles ‑‑physaddr "<offset>"   
-              #vol -f "$cRutaAlArchivoDeDump" -o "$cCarpetaDondeGuardar"/Archivos windows.dumpfiles --virtaddr 0xe70f57293860
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.dumpfiles ‑‑pid "<PID>" 
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.dumpfiles
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.dumpfiles ‑‑virtaddr "<offset>"
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" -o "/path/to/dir" windows.dumpfiles ‑‑physaddr "<offset>"   
+              #$HOME/HackingTools/Forensics/volatility3/vol.py -f "$cRutaAlArchivoDeDump" -o "$cCarpetaDondeGuardar"/Archivos windows.dumpfiles --virtaddr 0xe70f57293860
 
         ;;
 
