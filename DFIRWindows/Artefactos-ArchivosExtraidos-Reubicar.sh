@@ -22,7 +22,7 @@
   fi
 
 # Definir la constante con la ruta de la carpeta
-cCarpetaConArchivosExtraidos="$1"
+  cCarpetaConArchivosExtraidos="$1"
 
 # Crear subcarpetas
   mkdir -p "$cCarpetaConArchivosExtraidos/dat"
