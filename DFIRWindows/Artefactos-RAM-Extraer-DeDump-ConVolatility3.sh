@@ -51,8 +51,8 @@
     echo ""
     echo "  El repo de volatility3 existe. Descargándolo..."
     echo ""
-    mkdir -p $HOME/HackingTools/
-    cd $HOME/HackingTools/
+    mkdir -p $HOME/HackingTools/Forensics/ 2> /dev/null
+    cd $HOME/HackingTools/Forensics/
     # Comprobar si el paquete git está instalado. Si no lo está, instalarlo.
       if [[ $(dpkg-query -s git 2>/dev/null | grep installed) == "" ]]; then
         echo ""
