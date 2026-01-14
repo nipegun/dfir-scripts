@@ -9,10 +9,10 @@
 # Script de NiPeGun para reubicar los archivos extraidos por volatility en subcarpetas dat, img y vacb
 #
 # Ejecución remota:
-#   curl -sL https://raw.githubusercontent.com/nipegun/df-scripts/refs/heads/main/DFIRWindows/Artefactos-MFT-Parsear.sh | bash -s [CarpetaDondeCrearLasSubCarpetas]
+#   curl -sL https://raw.githubusercontent.com/nipegun/dfir-scripts/refs/heads/main/DFIRWindows/Artefactos-ArchivosExtraidos-Reubicar.sh | bash -s [CarpetaDondeCrearLasSubCarpetas]
 #
 # Bajar y editar directamente el archivo en nano
-#   curl -sL https://raw.githubusercontent.com/nipegun/df-scripts/refs/heads/main/DFIRWindows/Artefactos-MFT-Parsear.sh | nano -
+#   curl -sL https://raw.githubusercontent.com/nipegun/dfir-scripts/refs/heads/main/DFIRWindows/Artefactos-ArchivosExtraidos-Reubicar.sh | nano -
 # ----------
 
 # Comprobar parámetro
