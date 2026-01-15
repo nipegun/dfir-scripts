@@ -3,7 +3,7 @@
 # Script de nipegun para analizar procesos sospechosos con Volatility2
 #
 # Ejecución remota:
-#   curl -sL https://raw.githubusercontent.com/nipegun/dfir-scripts/refs/heads/main/DFIRWindows/Artefactos-DeRAM-Procesos-Sospechosos-DumpearMemoria.sh | bash
+#   curl -sL https://raw.githubusercontent.com/nipegun/dfir-scripts/refs/heads/main/DFIRWindows/Artefactos-DeRAM-Procesos-Sospechosos-DumpearMemoria-ConVolatility2.sh | bash
 #
 
 # Definir constantes
