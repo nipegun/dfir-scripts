@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # Script de nipegun para analizar procesos sospechosos con Volatility2
+#
+# Ejecución remota:
+#   curl -sL https://raw.githubusercontent.com/nipegun/dfir-scripts/refs/heads/main/DFIRWindows/Artefactos-DeRAM-Procesos-Sospechosos-DumpearMemoria.sh | bash
+#
 
 # Definir constantes
   cRutaAVolatility2="$HOME/HackingTools/Forensics/volatility2/vol.py"
