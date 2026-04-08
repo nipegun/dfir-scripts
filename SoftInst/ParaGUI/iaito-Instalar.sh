@@ -116,17 +116,17 @@
         sudo apt-get -y install libqt6svgwidgets6
 
       # Hacer creer al sistema que radare2 está instalado
-        echo ''                                                                   | sudo tee -a /var/lib/dpkg/status
-        echo 'Package: radare2'                                                   | sudo tee -a /var/lib/dpkg/status
-        echo 'Status: install ok installed'                                       | sudo tee -a /var/lib/dpkg/status
-        echo 'Priority: optional'                                                 | sudo tee -a /var/lib/dpkg/status
-        echo 'Section: devel'                                                     | sudo tee -a /var/lib/dpkg/status
-        echo 'Installed-Size: 1'                                                  | sudo tee -a /var/lib/dpkg/status
-        echo 'Maintainer: NiPeGun <root@localhost>'                               | sudo tee -a /var/lib/dpkg/status
-        echo 'Architecture: amd64'                                                | sudo tee -a /var/lib/dpkg/status
-        echo "Version: $vUltVersR2"                                               | sudo tee -a /var/lib/dpkg/status
-        echo 'Description: Paquete falso para satisfacer dependencias de radare2' | sudo tee -a /var/lib/dpkg/status
-        sudo dpkg --update-avail
+        #echo ''                                                                   | sudo tee -a /var/lib/dpkg/status
+        #echo 'Package: radare2'                                                   | sudo tee -a /var/lib/dpkg/status
+        #echo 'Status: install ok installed'                                       | sudo tee -a /var/lib/dpkg/status
+        #echo 'Priority: optional'                                                 | sudo tee -a /var/lib/dpkg/status
+        #echo 'Section: devel'                                                     | sudo tee -a /var/lib/dpkg/status
+        #echo 'Installed-Size: 1'                                                  | sudo tee -a /var/lib/dpkg/status
+        #echo 'Maintainer: NiPeGun <root@localhost>'                               | sudo tee -a /var/lib/dpkg/status
+        #echo 'Architecture: amd64'                                                | sudo tee -a /var/lib/dpkg/status
+        #echo "Version: $vUltVersR2"                                               | sudo tee -a /var/lib/dpkg/status
+        #echo 'Description: Paquete falso para satisfacer dependencias de radare2' | sudo tee -a /var/lib/dpkg/status
+        #sudo dpkg --update-avail
 
       # Instalar
         sudo apt -y install /tmp/iaito.deb
