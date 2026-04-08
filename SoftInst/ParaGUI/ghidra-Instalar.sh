@@ -55,6 +55,10 @@
     echo -e "${cColorAzulClaro}  Iniciando el script de instalación de ghidra para Debian 13 (x)...${cFinColor}"
     echo ""
 
+    # Instalar el default jdk
+      sudo apt-get -y update
+      sudo apt-get -y install default-jdk
+
     # Obtener el tag de la última release del repo de Github
       echo ""
       echo "    Obteniendo el tag de la última release del repo de Github..."
@@ -96,6 +100,10 @@
     echo ""
     echo -e "${cColorAzulClaro}  Iniciando el script de instalación de ghidra para Debian 12 (Bookworm)...${cFinColor}"
     echo ""
+
+    # Instalar el default jdk
+      sudo apt-get -y update
+      sudo apt-get -y install default-jdk
 
     # Obtener el tag de la última release del repo de Github
       echo ""
